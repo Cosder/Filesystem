@@ -1,0 +1,76 @@
+   
+ 
+1.3: Your program will be allocating 4226 blocks for the file system.  
+1.4: The file system shall support files up to 10,240,000 bytes in size.  
+1.5: The file system shall support up to 128 files. 
+1.6: The file system block size shall be 8192 bytes.  
+1.7: The file system shall use an indexed allocation scheme. 
+1.8: The file system shall support file names of up to 32 characters.  
+1.9: Supported file names shall only be alphanumeric with “.”. There shall be no 
+restriction to how many characters appear before or after the “.”. There shall be support 
+for files without a “.”  
+1.10: The file system will store the directory in the first (block 0) disk block.  
+1.11: The file system shall allocate blocks 3-131 for inodes 
+1.12: The file system shall use block 1 for the inode map 
+1.13: The file system shall use block 2 for the free block map  
+1.14 The directory structure shall be a single level hierarchy with no subdirectories.  
+2.0 Command Requirements 
+ 
+2.1 The put command shall allow the user to put a new file into the file system.  
+2.1.1 The command shall take the form:  
+put <filename> 
+2.1.2 If the filename is too long an error will be returned stating:  
+put error: File name too long. 
+2.1.3 If there is not enough disk space for the file an error will be returned stating:  
+put error: Not enough disk space. 
+2.2 The get command shall allow the user to retrieve a file from the file system and 
+place it in the current working directory.  
+2.2.1 The command shall take the form:  
+get <filename> 
+and  
+get <filename> <newfilename> 
+ 
+2.2.2 If no new filename is specified the get command shall copy the file to the current 
+working directory using the old filename.  
+2.2.3 If the file does not exist in the file system an error will be printed that states: get 
+error: File not found. 
+ 
+2.3 The del command - The del command shall allow the user to delete a file from the 
+file system  
+2.3.2 If the file does exist in the file system it shall be deleted and all the space available 
+for additional files. 
+ 
+2.3.3 If the file is read-only the file shall not be deleted and the following message shall 
+be printed:  
+del: That file is marked read-only. 
+2.3 The list command - The list command shall display all the files in the file system, 
+their size in bytes and the time they were added to the file system  
+ 
+2.3.1 If no files are in the file system a message shall be printed: list: No files found.  
+  
+   
+2.3.2 Files that are marked as hidden shall not be listed  
+2.4 The df command - The df command shall display the amount of free space in the 
+file system in bytes. 
+ 
+2.5 The open command - The open command shall open a file system image file with 
+the name and path given by the user.  
+2.5.1 If the file is not found a message shall be printed:  
+open: File not found 
+2.6 The save command - The save command shall write the file system to disk. 
+2.7 The attrib command - The attrib command sets or removes an attribute from the 
+file.  
+2.7.1 Valid attributes are:  
+2.7.2 To set the attribute on the file the attribute tag is given with a +, ex:  
+mfs> attrib +h foo.txt 
+ 
+2.7.3 To remove the attribute on the file the attribute tag is given with a -, ex:  
+mfs> attrib -h foo.txt 
+ 
+2.7.3 If the file is not found a message shall be printed: 
+ 
+attrib: File not found  
+2.6 The createfs command - The createfs command shall create a file system image file 
+with the named provided by the user.   
+2.6.1 If the file name is not provided a message shall be printed:  
+createfs: File not found
